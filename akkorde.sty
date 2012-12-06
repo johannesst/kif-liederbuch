@@ -1,0 +1,93 @@
+% Ein -*-latex-*- File
+
+% Stellt die Befehle 
+% \X{<Akkordname>}              \X{Dm}    \X{D7}
+% \Fis und \B                   \X{D\Fis} \X{D\B 7}
+% zur Verfügung.
+%
+% Es bietet sich an, zum Setzen des Liedes das song-Environment
+% zu benutzen. Die Akkorde werden einfach an der passenden Stelle in
+% den Text gesetzt. Weiterhin ist in der song-Umgebung ein
+% Seitenumbruch nur zwischen Absätzen (=Strophen) möglich.
+% Beispiel:
+
+% \songtitle{Lied}
+% \begin{songinfo}
+% Dies ist ein Testlied,\\
+% Melodie: Keine\\
+% Text: Stony
+% \end{songinfo}
+%
+% \begin{song}
+%       Dies ist ein Te\X{Dm}stlied\\*
+%       hat ein p\X{A\B 7}aar Akkorde\\*
+%       zum T\X{F\Fis}esten u\X{B}nd so.
+%       \Xvspace[1cm]
+% \end{song}
+
+% \Xvspace fügt einen vertikalen Abstand ein, der nur erscheint, wenn
+% die Akkorde eingeschaltet sind (um Strophen mit Akkorden besser vom
+% Rest abzusetzen). Default ist 0.5cm, aber es kann jeder beliebige
+% Wert als optionaler Parameter übergeben werden.
+
+% Zwischen Akkorden an und aus umschalten: \Xon, \Xoff
+
+% \renewcommand{\X}[1]{}       % Unterdr"uckung der Akkorde
+
+\newcommand{\Fis}{\textsuperscript{\#}}
+\newcommand{\B}{\textsuperscript{b}}
+
+\newcommand{\X}[1]{}
+\newcommand{\Xvspace}[1]{}
+
+\newcommand{\Xon}{
+  \renewcommand{\X}[1]{\raisebox{2.3ex}[4.5ex]{\makebox[0mm][l]{%
+        \textsf{\small\bfseries ##1}}}}
+  \renewcommand{\Xvspace}[1][0.5cm]{\vspace{##1}}
+}
+
+\newcommand{\Xoff}{
+  \renewcommand{\X}[1]{}
+  \renewcommand{\Xvspace}[1]{}
+}
+
+\Xon                          % Akkorde an!
+
+\newenvironment{song}{
+  \samepage
+  \setlength{\parskip}{2mm plus 0mm minus 1mm}
+  \setlength{\parindent}{0cm}
+  }{}
+
+
+
+\newcommand{\songtitle}[1]{\centerline{\huge\bfseries\sffamily #1}%
+  \vspace{0.5cm}%
+  \addtocontents{toc}{
+    \noindent\hspace{1cm}#1\dotfill\arabic{page}\par}}
+
+\newenvironment{songinfo}{
+  \itshape
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{2mm plus 0mm minus 1mm}
+  \begin{flushleft}
+  }
+{ \end{flushleft} }
+
+
+
+\newenvironment{changemargin}[2]{\begin{list}{}{
+      \setlength{\topsep}{0pt}\setlength{\leftmargin}{0pt}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\listparindent}{\parindent}
+      \setlength{\itemindent}{\parindent}
+      \addtolength{\leftmargin}{#1}\addtolength{\rightmargin}{#2}
+      }\item\relax }{\end{list}}
+
+
+
+
+
+
+
+
