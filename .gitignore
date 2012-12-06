@@ -1,0 +1,15 @@
+# ignore all temp/backup stuff.
+*~
+.*.swp
+
+# ignore generated stuff.
+*.[oa]
+*.class
+*.pyc
+*.aux
+*.dvi
+*.fot
+*.toc
+*.log
+#build/*
+
