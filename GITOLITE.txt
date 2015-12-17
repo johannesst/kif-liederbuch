@@ -1,5 +1,5 @@
 REPO:
-git clone ssh://git@git.somenet.org:666/fsinf/kif/liederbuch
+git clone ssh://git@git.somenet.org:2/fsinf/kif/liederbuch
 
 GITWEB:
 http://git.somenet.org/?p=fsinf/kif/liederbuch.git;a=summary
